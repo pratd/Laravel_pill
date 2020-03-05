@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -81,11 +82,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <div class="container">
+                        <h1>Welcome to {{ config('app.name')}}</h1>
+                    </div>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>
