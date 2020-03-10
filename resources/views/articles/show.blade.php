@@ -10,6 +10,11 @@
         </div>
         <div class="col-12">
             <p><a href="/articles/{{$article->id }}/edit">Edit</a></p>
+            <form action="/articles/{{$article->id}}" method="POST">
+                @method('DELETE')
+                @csrf
+            <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
     </div>
 

@@ -9,11 +9,11 @@ class Articles extends Model
 {
     protected $fillable =['title', 'content', 'publish', 'slug'];
     //the above data is mass assigned
+    protected $attributes=[
+        'published' => 1
+    ];
     public function getPublishAttribute($attribute){
-        return [
-            0 => 'Draft',
-            1 => 'Published'
-        ][$attribute]; //using accessor
+        return $this->publishOptions()[$attribute];
     }
     public function scopePublished($query){
         return $query->where('publish', '1');
@@ -24,6 +24,13 @@ class Articles extends Model
     }
 
     public function alluser(){
-        return $this->belongsTo(TempUser::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function publishOptions(){
+        return [
+            0 => 'Draft',
+            1 => 'Published'
+        ]; //using accessor
     }
 }

@@ -16,8 +16,10 @@
     </label>
     <select name="publish" id="publish" class="form-control">
         <option value="" disabled>Select Article Status</option>
-        <option value="0">Draft</option>
-        <option value="1">published</option>
+        @foreach ( $article->publishOptions() as $publishOptionKey => $publishOptionValue )
+    <option value="{{ $publishOptionKey}}" {{ $article->publish == $publishOptionValue ? 'Selected' : ''  }}>{{$publishOptionValue}}</option>
+
+        @endforeach
     </select>
 </div>
 @csrf

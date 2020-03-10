@@ -1,17 +1,16 @@
 <label for="title">Title:</label>
 <div class="form-group pb-2">
-    <input type="text" name="title" value="{{old('title') ?? $article->title}}">
+    <input type="text" name="title">
     <div>{{ $errors->first('title') }}</div>
 </div>
 <label for="title">Slug:</label>
 <div class="form-group pb-2">
-    <input type="text" name="slug" value="{{old('slug') ?? $article->slug}}">
+    <input type="text" name="slug" >
     <div>{{ $errors->first('slug') }}</div>
 </div>
 <label for="content">Content:</label>
 <div class="form-group pb-2">
     <textarea class="text" name="content" cols="100" rows="20">
-        {{ old('content') ?? $article->content }}
     </textarea>
     <div>{{ $errors->first('content') }}</div>
 </div>

@@ -5,12 +5,25 @@ use Illuminate\Http\Request;
 use laravel_project\Articles;
 
 class ArticlesController extends Controller
-{
-    public function index()
+{   public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+    public function index(Request $request)
     {
         //$activeArticle = Articles::published()->get();
         //$inactiveArticle = Articles::draft()->get();
-        $articles = Articles::all();
+        $userId = $request->user();
+        //dd($userId->id);
+        if ($userId ===  null ) {
+            $articles = Articles::all();
+        }else {
+            $articles = Articles::where('user_id',$userId->id)->get();
+            //dd($articles);
+            //dd(Articles::where('user_id',$userId->id)->first());
+            //dd( Articles::where('user_id',$userId)->first());
+            //dd('hi');
+        }
         //return view('articles/index', compact('activeArticles', 'inactiveArticles'));
         return view('articles/index', compact('articles'));
     }
@@ -60,5 +73,11 @@ class ArticlesController extends Controller
         $article->update($data);
         //dd($article->slug);
         return redirect('articles/' .$article->slug);
+    }
+
+    public function destroy(Articles $article)
+    {
+        $article->delete();
+        return redirect('articles');
     }
 }

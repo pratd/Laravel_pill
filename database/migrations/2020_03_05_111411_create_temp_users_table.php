@@ -13,7 +13,7 @@ class CreateTempUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('temp_users', function (Blueprint $table) {
+        Schema::create('Users', function (Blueprint $table) {
             $table->bigIncrements('id');
             //$table->string('article_name');
             $table->string('name');
